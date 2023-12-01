@@ -1,0 +1,49 @@
+.content {
+    display: flex;
+}
+
+.sidebar {
+    width: 20rem;
+    height: 100vh;
+    background-color: var(--header-color);
+    position: fixed;
+}
+
+.dashboard {
+    background-image: url('../../../public/images/World\ Map.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* width: calc(100% - 20rem);
+    position: relative;
+    right: 20rem; */
+    padding: 2rem 5%;
+}
+
+.dashboard header {
+    font-size: 1.5rem;
+}
+
+.dashboard .fast-access {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    height: 80%;
+    align-items: center;
+}
+
+.dashboard .fast-access .link {
+    cursor: pointer;
+    border: .1rem solid var(--header-color);
+    color: var(--header-color);
+    padding: 1rem 2rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.dashboard .fast-access .link:hover {
+    background-color: var(--header-color);
+    border: .1rem solid var(--main-color);
+    color: var(--main-color);
+}

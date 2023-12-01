@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+
+        <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
+        <link rel="stylesheet" href="../components/style/navbar.css">
+        <link rel="stylesheet" href="../components/style/footer.css">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="./style/request.shipment.css">
+
+        <title>بوكس | طلب توصيل شحنة</title>
+    </head>
+    <body>
+        <header></header>
+
+        <main class="page request-shipment">
+            <header>
+                <h1><i class="fa-solid fa-truck"></i> طلب توصيل بضاعة</h1>
+            </header>
+
+            <section class="steps">
+                <ol>
+                    <li class="center active">1</li>
+                    <li class="center">2</li>
+                    <li class="center">3</li>
+                </ol>
+            </section>
+
+            <section>
+                <form enctype="multipart/form-data" method="post">
+                    <section class="step-1 active">
+                        <header>
+                            <h2>تفاصيل البضاعة</h2>
+                        </header>
+                        <section>
+                            <div>
+                                <label for="from"><i class="fa-solid fa-location-dot"></i> المدينة التي ستنقل منها</label>
+                                <select name="from" class="city"></select>
+                            </div>
+                            <div>
+                                <label for="to"><i class="fa-solid fa-location-dot"></i> المدينة التي ستنقل إليها</label>
+                                <select name="to" class="city"></select>
+                            </div>
+                            <div>
+                                <label for="category_id"><i class="fa-solid fa-box"></i> نوع البضاعة</label>
+                                <select name="category_id"></select>
+                            </div>
+                            <div>
+                                <label for="quantity"><i class="fa-solid fa-dolly"></i> الكمية</label>
+                                <input type="text" name="quantity">
+                            </div>
+                            <div>
+                                <label for="date_of_shipment"><i class="fa-solid fa-calendar-day"></i> تاريخ الشحن</label>
+                                <input type="date" name="date_of_shipment">
+                            </div>
+                        </section>
+                    </section>
+
+                    <section class="step-2">
+                        <header>
+                            <h2>بياناتك</h2>
+                        </header>
+                        <section>
+                            <div>
+                                <label for="owner_name"><i class="fa-solid fa-user"></i> الاسم</label>
+                                <input type="text" name="owner_name">
+                            </div>
+                            <div>
+                                <label for="owner_email"><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                                <input type="email" name="owner_email">
+                            </div>
+                            <div>
+                                <label for="owner_phone"><i class="fa-solid fa-phone"></i> الهاتف</label>
+                                <input type="tel" name="owner_phone">
+                            </div>
+                        </section>
+                    </section>
+
+                    <section class="step-3">
+                        <header>
+                            <h2>فاتورتك</h2>
+                        </header>
+                        <section>
+                            <div>
+                                <label for="price"><i class="fa-solid fa-money-bill-wave"></i> المبلغ</label>
+                                <input type="number" name="price" readonly>
+                            </div>
+                            <div>
+                                <label for="bill"><i class="fa-solid fa-receipt"></i> الفاتورة</label>
+                                <input type="file" name="receipt" accept="jpg">
+                            </div>
+                            <div class="btn-container center">
+                                <input class="btn" type="submit" name="submit" value="ارسال">
+                            </div>
+                        </section>
+                    </section>
+                </form>
+            </section>
+
+            <section class="switch-steps">
+                <section class="prev center">
+                    <i class="fa-solid fa-angle-right"></i>
+                </section>
+                <section class="next center">
+                    <i class="fa-solid fa-angle-left"></i>
+                </section>
+            </section>
+
+            
+        </main>
+        
+        <script src="./js/request-shipment.js" type="module"></script>
+    </body>
+</html>

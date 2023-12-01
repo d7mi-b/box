@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+
+    <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
+    <link rel="stylesheet" href="../components/style/navbar.css">
+    <link rel="stylesheet" href="../components/style/footer.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./style/shipment-query.css">
+
+    <title>بوكس | الشحنات</title>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="page shipment-query">
+        <header>
+            <h1><i class="fa-solid fa-truck"></i> الشحنات</h1>
+        </header>
+
+        <section class="check-trip">
+            <form>
+                <div>
+                    <label for="trip_id"><i class="fa-solid fa-dolly"></i> حالة الشحنة</label>
+                    <select name="stage">
+                        <option value="تحت المعالجة">تحت المعالجة</option>
+                        <option value="في انتظار وقت الشحن">في انتظار وقت الشحن</option>
+                        <option value="تم استلام الشحنة وجاري توصيلها">تم استلام الشحنة وجاري توصيلها</option>
+                        <option value="تم توصيل الشحنة الى الموقع">تم توصيل الشحنة الى الموقع</option>
+                    </select>
+                </div>
+                <div class="btn-container center">
+                    <input class="btn" type="submit" name="submit" value="عرض">
+                </div>
+            </form>
+        </section>
+
+        <section class="shipments-container"></section>
+    </main>
+
+    <script type="module">
+        import Navbar from '../components/Navbar.js';
+        import Footer from '../components/Footer.js';
+
+        const header = document.querySelector("body > header:first-child");
+        header.innerHTML = Navbar();
+
+        document.body.innerHTML += Footer();
+
+        const queryForm = document.forms[0];
+
+        const page = document.querySelector('main');
+
+        queryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (document.querySelector(".not-found")) {
+                document.querySelector(".not-found").remove();
+            }
+
+            const stage = queryForm.stage.value;
+
+            const http = new XMLHttpRequest();
+
+            http.onload = () => {
+                if (http.status === 200) {
+                    const result = JSON.parse(http.responseText);
+
+                    if (result.length === 0) {
+                        page.innerHTML += `
+                                <p class="not-found">لا توجد شحنة بهذا الرقم, تأكد من رقم الشحنة</p>
+                            `;
+                    } else {
+                        let shipments = [];
+
+                        result.forEach(e => {
+                            const list = result.filter(sh => sh.id === e.id);
+                            list[0].city2 = list[1].city;
+                            if (!shipments.includes(list[0])) {
+                                shipments.push(list[0])
+                            }
+                        })
+
+                        const shipmentsContainer = document.getElementsByClassName('shipments-container')[0];
+                        shipmentsContainer.innerHTML = '';
+
+                        shipments.forEach(shipment => {
+                            shipmentsContainer.innerHTML += `
+                                    <a class="shipment" href="http://localhost:2000/Box/client/src/pages/admin-shipment.html?id=${shipment.id}">
+                                        <header>
+                                            <h1>الشحنة رقم <span>${shipment.id}</span></h1>
+                                        </header>
+
+                                        <section>
+                                            <section class="row">
+                                                <p>من</p>
+                                                <p name="from" class="city">${shipment.city}</p>
+                                            </section>
+
+                                            <section class="row">
+                                                <p>الى</p>
+                                                <p name="to" class="city">${shipment.city2}</p>
+                                            </section>
+
+                                            <section class="row">
+                                                <p>نوع البضاعة</p>
+                                                <p name="category">${shipment.category}</p>
+                                            </section>
+
+                                            <section class="row">
+                                                <p>تاريخ الشحن</p>
+                                                <p name="date_of_shipment">${shipment.date_of_shipment.split(' ')[0]}</p>
+                                            </section>    
+                                        </section>
+                                    </a>
+                                `;
+                        });
+                    }
+                }
+            }
+
+            http.open("GET", `http://localhost:2000/Box/server/APIs/shipments/search.php?search=${stage}`);
+            http.send();
+        })
+    </script>
+</body>
+
+</html>

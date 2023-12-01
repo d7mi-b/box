@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+
+        <link rel="stylesheet" href="./src/packges/fontawesome/css/all.css">
+        <link rel="stylesheet" href="./src/packges/fontawesome/css/brands.css">
+        <link rel="stylesheet" href="./src/style.css">
+        <link rel="stylesheet" href="./src/components/style/navbar.css">
+        <link rel="stylesheet" href="./src/components/style/footer.css">
+
+        <title>بوكس</title>
+    </head>
+    <body>
+        <header></header>
+
+        <main>
+            <section class="hero">
+                <section class="image">
+                    <img src="./public/images/trucks.png" alt="trucks">
+                </section>
+
+                <header class="center">
+                    <h1>
+                        <span>بوكس</span> الحل الأمثل لنقل البضائع
+                    </h1>
+                    <section class="btn-container center">
+                        <a href="/Box/client/src/pages/request-shipment.html" class="btn">اطلب شحن</a>
+                    </section>
+                </header>
+            </section>
+
+            <section class="check-trip">
+                <header>
+                    <h1>الاستعلام عن شحنة</h1>
+                </header>
+                <form>
+                    <div>
+                        <label for="shipment_id">رقم الشحنة</label>
+                        <input type="text" name="shipment_id" required placeholder="862dc770-809b-11ee-a3c0-005056c00001">
+                    </div>
+                    <div class="btn-container center">
+                        <input class="btn" type="submit" name="submit" value="المتابعة">
+                    </div>
+                </form>
+            </section>
+
+            <section id="about" class="page center about">
+                <article>
+                    <header>
+                        <h1>بوكس؟</h1>
+                    </header>
+
+                    <p>
+                        نسعى جاهدين في <span>بوكس</span> لتوفير افضل خدمات النقل والشحن
+                        ولنكون الخيار الأول والأفضل لعملائنا من خلال التزامنا بسرعة التوصيل 
+                        وبافضل جودة ممكنة وليكون نقل وشحن البضائع في ابسط صورة ممكنة
+                    </p>
+                </article>
+            </section>
+
+            <section class="page center why-us">
+                <header>
+                    <h1>لماذا بوكس؟</h1>
+                </header>
+
+                <section class="featurs">
+                    <article class="featur center">
+                        <section class="image">
+                            <img src="./public/images/fast.png" alt="Fast">
+                        </section>
+                        <header>
+                            <h2>سريعين في التوصيل</h2>
+                        </header>
+                    </article>
+
+                    <article class="featur center">
+                        <section class="image">
+                            <img src="./public/images/reliable.png" alt="reliable">
+                        </section>
+                        <header>
+                            <h2>بضائعك في امان</h2>
+                        </header>
+                    </article>
+
+                    <article class="featur center">
+                        <section class="image">
+                            <img src="./public/images/access.png" alt="access">
+                        </section>
+                        <header>
+                            <h2>مناطق توصيلنا واسعة</h2>
+                        </header>
+                    </article>
+                </section>
+            </section>
+
+            <!-- <section class="page center services">
+                <header>
+                    <h1>خدماتنا</h1>
+                </header>
+
+                <ul class="services-container">
+                    <li class="service">
+                        <section class="icon">
+                            <i class="fa-solid fa-truck"></i>
+                        </section>
+                        <header>
+                            <h2>نقل البضائع</h2>
+                        </header>
+                    </li>
+
+                    <li class="service">
+                        <section class="icon">
+                            <i class="fa-solid fa-truck"></i>
+                        </section>
+                        <header>
+                            <h2>نقل البضائع</h2>
+                        </header>
+                    </li>
+                </ul>
+            </section> -->
+        
+            <section class="page center truck-img">
+                <article class="center">
+                    <header>
+                        <h1>
+                            الحل الأفضل لمشروعك لتجنب اي مشاكل في النقل والشحن
+                        </h1>
+                    </header>
+                    <section class="btn-container">
+                        <a class="btn" href="/Box/client/src/pages/shipment-query.html">اطلب شحن</a>
+                    </section>
+                </article>
+            </section>
+
+            <section class="page center contact-us">
+                <header>
+                    <h1>نسعد بتواصلكم معنا وسماع مقترحاتكم</h1>
+                </header>
+
+                <section>
+                    <form>
+                        <div>
+                            <label for="name">الأسم</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div>
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="title">الموضوع</label>
+                            <input type="text" name="title" required>
+                        </div>
+                        <div>
+                            <label for="message">الرسالة</label>
+                            <textarea name="message" required></textarea>
+                        </div>
+                        <div class="btn-container center">
+                            <input class="btn" type="submit" name="submit" value="ارسال">
+                        </div>
+                    </form>
+                </section>
+            </section>
+        </main>
+
+        <script type="module">
+            import Navbar from './src/components/Navbar.js';
+            import Footer from './src/components/Footer.js';
+
+            const header = document.querySelector("body > header:first-child");
+            header.innerHTML = Navbar();
+
+            document.body.innerHTML += Footer();
+
+            const queryForm = document.forms[0];
+
+            const page = document.querySelector('.check-trip');
+
+            queryForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                if (document.querySelector(".not-found")) {
+                    document.querySelector(".not-found").remove();
+                }
+
+                const shipment_id = queryForm.shipment_id.value;
+
+                const http = new XMLHttpRequest();
+
+                http.onload = () => {
+                    if (http.status === 200) {
+                        const result = JSON.parse(http.responseText);
+
+                        if (result.length === 0) {
+                            page.innerHTML += `
+                            <p class="not-found">لا توجد شحنة بهذا الرقم, تأكد من رقم الشحنة</p>
+                        `;
+                        } else {
+                            location.assign(`http://localhost:2000/Box/client/src/pages/shipment.html?id=${result[0].id}`);
+                        }
+                    }
+                }
+
+                http.open("GET", `http://localhost:2000/Box/server/APIs/shipments/shipment.php?id=${shipment_id}`);
+                http.send();
+            })
+        </script>
+    </body>
+</html>

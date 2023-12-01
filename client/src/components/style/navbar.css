@@ -1,0 +1,78 @@
+.navbar {
+    padding: 1.5rem 2.5%;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    z-index: 100;
+}
+
+.navbar .logo,
+.navbar .nav-list .logo {
+    font-size: 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--header-color);
+}
+
+.navbar .logo span {
+    font-size: 1.3rem;
+    margin: 0 .5rem;
+}
+
+.navbar .nav-list .logo,
+.navbar .nav-list .bar {
+    display: none;
+}
+
+.navbar .nav-list ul {
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .navbar .nav-list .logo,
+    .navbar .nav-list .bar {
+        display: block;
+    }
+
+    .navbar > .logo,
+    .navbar .nav-list ul {
+        display: none;
+    }
+
+    .navbar .nav-list .bar {
+        font-size: 2rem; 
+        margin-left: 1rem;
+    }
+
+    .navbar .nav-list ul {
+        width: 80%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: space-evenly;
+        position: absolute;
+        right: 0;
+        z-index: 1000;
+        background-color: var(--main-color);
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .navbar .nav-list ul .logo {
+        display: flex;
+        height: auto;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .navbar .nav-list:hover ul {
+        display: flex;
+    }
+}

@@ -1,0 +1,80 @@
+body {
+    background-image: url('../../../public/images/World\ Map.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.shipment-query {
+    padding: 1rem 5%;
+}
+
+.shipment-query .check-trip {
+    margin: 1rem auto;
+    background-color: transparent;
+    color: var(--second-color);
+    font-size: 1.7rem;
+}
+
+.shipment-query .check-trip input {
+    border: .1rem solid var(--hover-color);
+}
+
+.shipment-query .not-found {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--header-color);
+}
+
+.shipments-container {
+    padding: 1rem 5%;
+}
+
+.shipments-container .shipment {
+    display: block;
+    border: .1rem solid var(--hover-color);
+    margin: 1.5rem auto;
+    padding: 1rem;
+}
+
+.shipments-container .shipment:hover {
+    transform: scale(1.01);
+}
+
+.shipments-container .shipment header span {
+    color: var(--header-color);
+}
+
+.shipments-container .shipment > section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+}
+
+.shipments-container .shipment > section p:last-of-type {
+    font-weight: 600;
+    color: var(--header-color);
+}
+
+@media (max-width: 992px) {
+    .shipments-container .shipment header {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .shipments-container .shipment header {
+        font-size: .8rem;
+    }
+
+    .shipments-container .shipment header span {
+        display: block;
+        font-size: .9rem;
+    }
+
+    .shipments-container .shipment > section {
+        margin-top: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.1rem;
+    }
+}

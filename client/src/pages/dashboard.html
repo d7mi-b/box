@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+
+    <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
+    <link rel="stylesheet" href="../components/style/navbar.css">
+    <link rel="stylesheet" href="../components/style/footer.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./style/dashboard.css">
+
+    <title>بوكس | لوحة التحكم</title>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="page dashboard">
+        <header>
+            <h1><i class="fa-solid fa-box"></i> لوحة التحكم</h1>
+        </header>
+    
+        <section class="fast-access">
+            <a class="link" href="/Box/client/src/pages/shipments.html">
+                <section>
+                    <i class="fa-solid fa-dolly"></i>
+                </section>
+                <p>الشحنات</p>
+            </a>
+    
+            <a class="link">
+                <section>
+                    <i class="fa-solid fa-truck"></i>
+                </section>
+                <p>الشاحنات</p>
+            </a>
+    
+            <a class="link">
+                <section>
+                    <i class="fa-solid fa-city"></i>
+                </section>
+                <p>المدن</p>
+            </a>
+    
+            <a class="link">
+                <section>
+                    <i class="fa-solid fa-gear"></i>
+                </section>
+                <p>الإعدادات</p>
+            </a>
+        </section>
+    </main>
+
+    <!-- <section class="content">
+        <aside class="sidebar">
+            <ul>
+                <li class="logo">
+                    <i class="fa-solid fa-box"></i>
+                    <span class="">بوكس</span>
+                </li>
+                <li><a href="/Box/client/index.html">الرئيسية</a></li>
+                <li><a href="/Box/client/index.html#about">بوكس؟</a></li>
+                <li><a href="/Box/client/src/pages/request-shipment.html">طلب شحن بضاعة</a></li>
+                <li><a href="/Box/client/src/pages/shipment-query.html">الإستعلام عن شحنة</a></li>
+            </ul>
+        </aside>
+    
+        
+    </section> -->
+
+    <script type="module">
+        import Navbar from '../components/Navbar.js';
+        import Footer from '../components/Footer.js';
+
+        const header = document.querySelector("body > header:first-child");
+        header.innerHTML = Navbar();
+
+        document.body.innerHTML += Footer();
+    </script>
+</body>
+
+</html>
