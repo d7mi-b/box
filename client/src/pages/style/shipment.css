@@ -2,6 +2,34 @@ body {
     background-image: none;
 }
 
+.shipment header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shipment header .btn-container .btn {
+    font-size: 1.1rem;
+    border: .1rem solid var(--header-color);
+    background-color: var(--main-color);
+    min-width: 2.8rem;
+    min-height: 2.8rem;
+    align-items: center;
+}
+
+.shipment header .btn-container .btn:hover {
+    border: .1rem solid var(--main-color);
+    background-color: var(--header-color);
+    color: var(--main-color);
+}
+
+.shipment header i {
+    margin: 0;
+}
+
+.shipment header .btn-container .btn:hover i {
+    color: var(--main-color);
+}
+
 .content table {
     width: 90%;
     margin: 2rem auto;
@@ -19,7 +47,6 @@ body {
 }
 
 table tbody tr {
-    display: flex;
 }
 
 .content tbody tr th,
@@ -28,14 +55,15 @@ table tbody tr {
     border: .1rem solid var(--hover-color);
 }
 
-.content tbody tr th {
+/* .content tbody tr th {
     width: 30%;
     color: var(--header-color);
 }
 
 .content tbody tr td {
-    width: 70%
-}
+    width: 70%;
+    height: 100%;
+} */
 
 .content table tbody td.city {
     display: flex;
@@ -58,6 +86,16 @@ table tbody tr {
 
 .content table tbody img {
     width: 10rem;
+}
+
+.content table tbody .btn-container {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.content table tbody .btn-container .btn {
+    min-width: 2rem;
+    min-height: 2rem;
 }
 
 .update {
@@ -88,6 +126,10 @@ table tbody tr {
     table tbody tr {
         flex-direction: column;
         text-align: center;
+    }
+
+    .content table tbody tr {
+        border-bottom: .13rem solid var(--header-color);
     }
 
     .content table tr th,

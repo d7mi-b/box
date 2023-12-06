@@ -20,9 +20,13 @@
     <body>
         <header></header>
 
-        <main class="page shipment-query">
+        <main class="page shipment-query shipment">
             <header>
                 <h1><i class="fa-solid fa-dolly"></i> بيانات الشحنة</h1>
+
+                <section class="btn-container">
+                    <button class="btn center"><i class="fa-solid fa-trash"></i></button>
+                </section>
             </header>
 
             <section class="content">
@@ -132,6 +136,8 @@
         <script type="module">
             import Navbar from '../components/Navbar.js';
             import Footer from '../components/Footer.js';
+            import Alert from "../components/Alert.js";
+            import request from "../hooks/request.js";
 
             const header = document.querySelector("body > header:first-child");
             header.innerHTML = Navbar();
@@ -203,8 +209,7 @@
                     }
                 }
 
-                http.open("GET", `http://localhost:2000/Box/server/APIs/shipments/shipment.php?id=${id}`);
-                http.send();
+                request(http, "GET", `http://localhost:2000/Box/server/APIs/shipments/shipment.php?id=${id}`);
             }
 
             function getTrucks() {
@@ -231,9 +236,7 @@
                     }
                 }
 
-                http.open("GET", "http://localhost:2000/Box/server/APIs/trucks/trucks.php");
-                http.setRequestHeader("Content_Type", "application/json");
-                http.send();
+                request(http, "GET", "http://localhost:2000/Box/server/APIs/trucks/trucks.php");
             };
 
             getShipment();
@@ -248,8 +251,30 @@
                     console.log(http.responseText)
                 }
 
-                http.open("POST", "http://localhost:2000/Box/server/APIs/shipments/update.php");
-                http.send(new FormData(updateForm));
+                request(http, "POST", "http://localhost:2000/Box/server/APIs/shipments/update.php", new FormData(updateForm));
+            })
+
+            const btnDelete = document.querySelector('.shipment header button');
+            btnDelete.addEventListener("click", () => {
+                document.body.innerHTML += Alert(false, "هل انت متأكد من حذف الشحنة");
+
+                const btnContinue = document.querySelector('.alert .btn');
+
+                btnContinue.onclick = () => {
+                    const http = new XMLHttpRequest();
+
+                    http.onload = () => {
+                        if (http.status === 203) {
+                            document.body.innerHTML += Alert(true, "تم حذف الشحنة");
+                            const btnContinue = document.querySelectorAll('.alert .btn')[1];
+                            btnContinue.onclick = () => {
+                                location.replace('/Box/client/src/pages/shipments.html');
+                            }
+                        }
+                    }
+
+                    request(http, "DELETE", `http://localhost:2000/Box/server/APIs/shipments/delete.php?id=${id}`);
+                }
             })
         </script>
     </body>

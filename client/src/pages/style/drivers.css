@@ -1,0 +1,31 @@
+.form {
+    display: none;
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem 2rem;
+    border: .1rem solid var(--header-color);
+}
+
+.form form {
+    padding: 1rem;
+}
+
+.form label {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+
+.form input,
+.form select {
+    border: .1rem solid var(--hover-color);
+    width: 100%;
+    margin: .5rem 0 1.2rem;
+}
+
+.content table .update-td {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 2rem;
+}

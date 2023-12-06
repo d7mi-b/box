@@ -11,7 +11,8 @@
             select shipments.*, category, city, latitude, longitude from shipments 
             inner join categories on shipments.category_id = categories.id
             inner join cities on shipments.from_city_id = cities.id or shipments.to_city_id = cities.id
-            where shipments.id = '$search' or owner_phone = '$search' or owner_email = '$search' or stage = '$search'
+            where (shipments.id = '$search' or owner_phone = '$search' or owner_email = '$search' or stage = '$search')
+            and shipments.status = true
         ");
 
         $data = array();

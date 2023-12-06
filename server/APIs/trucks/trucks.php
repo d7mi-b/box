@@ -5,7 +5,10 @@
     $mysql = db_connect($host, $username, $password, $database);
 
     function getTrucks ($mysql) {
-        $result = mysqli_query($mysql, 'select * from trucks');
+        $result = mysqli_query($mysql, "
+            select trucks.*, driver.name from trucks left outer join driver on
+            trucks.driver_id = driver.id where trucks.status != 'محذوفة'
+        ");
         
         $trucks = array();
 

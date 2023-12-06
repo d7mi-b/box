@@ -73,8 +73,10 @@
                     const result = JSON.parse(http.responseText);
 
                     if (result.length === 0) {
+                        const shipmentsContainer = document.getElementsByClassName('shipments-container')[0];
+                        shipmentsContainer.innerHTML = '';
                         page.innerHTML += `
-                                <p class="not-found">لا توجد شحنة بهذا الرقم, تأكد من رقم الشحنة</p>
+                                <p class="not-found">لا توجد شحنات ${stage}</p>
                             `;
                     } else {
                         let shipments = [];
