@@ -30,40 +30,24 @@ body {
     color: var(--main-color);
 }
 
-.content table {
-    width: 90%;
-    margin: 2rem auto;
-    border: .1rem solid var(--header-color);
-}
-
-
-.content thead {
-    background-color: var(--header-color);
-    color: var(--main-color);
-}
-
-.content thead th {
-    padding: .8rem 2rem;
-}
 
 table tbody tr {
+    display: flex;
 }
 
 .content tbody tr th,
 .content tbody tr td {
     padding: 1rem;
-    border: .1rem solid var(--hover-color);
 }
 
-/* .content tbody tr th {
+.content tbody tr th {
     width: 30%;
     color: var(--header-color);
 }
 
 .content tbody tr td {
-    width: 70%;
-    height: 100%;
-} */
+    width: 70%
+}
 
 .content table tbody td.city {
     display: flex;
@@ -86,16 +70,6 @@ table tbody tr {
 
 .content table tbody img {
     width: 10rem;
-}
-
-.content table tbody .btn-container {
-    flex-direction: row;
-    gap: 1rem;
-}
-
-.content table tbody .btn-container .btn {
-    min-width: 2rem;
-    min-height: 2rem;
 }
 
 .update {
@@ -126,10 +100,6 @@ table tbody tr {
     table tbody tr {
         flex-direction: column;
         text-align: center;
-    }
-
-    .content table tbody tr {
-        border-bottom: .13rem solid var(--header-color);
     }
 
     .content table tr th,

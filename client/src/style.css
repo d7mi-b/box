@@ -53,6 +53,40 @@ label {
     margin-bottom: .5rem;
 }
 
+table {
+    width: 90%;
+    margin: 2rem auto;
+    border: .1rem solid var(--header-color);
+}
+
+
+thead {
+    background-color: var(--header-color);
+    color: var(--main-color);
+}
+
+th,
+td {
+    padding: .8rem 2rem;
+}
+
+tbody th,
+td {
+    border: .1rem solid var(--hover-color);
+    text-align: center;
+}
+
+table tbody .btn-container {
+    flex-direction: row;
+    gap: 1rem;
+    height: max-content;
+}
+
+table tbody .btn-container .btn {
+    min-width: 2rem;
+    min-height: 2rem;
+}
+
 input,
 textarea,
 select {
@@ -86,6 +120,34 @@ header i {
 .page {
     min-height: 100vh;
     padding: 1rem 2.5%;
+}
+
+.page > header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page > header .btn-container .btn {
+    font-size: 1.1rem;
+    border: .1rem solid var(--header-color);
+    background-color: var(--main-color);
+    min-width: 2.8rem;
+    min-height: 2.8rem;
+    align-items: center;
+}
+
+.page > header .btn-container .btn:hover {
+    border: .1rem solid var(--main-color);
+    background-color: var(--header-color);
+    color: var(--main-color);
+}
+
+.page > header i {
+    margin: 0;
+}
+
+.page > header .btn-container .btn:hover i {
+    color: var(--main-color);
 }
 
 .center {
