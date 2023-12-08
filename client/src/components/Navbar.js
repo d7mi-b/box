@@ -8,12 +8,12 @@ const Navbar = () => {
                 </section>
 
                 <ul class="nav-list">
+                    <li class="bar center">
+                        <i class="fa-solid fa-bars"></i>
+                    </li>
                     <li class="logo">
                         <i class="fa-solid fa-box"></i>
                         <span class="">بوكس</span>
-                    </li>
-                    <li class="bar center">
-                        <i class="fa-solid fa-bars"></i>
                     </li>
                     <ul>
                         <li class="logo">

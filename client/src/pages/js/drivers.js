@@ -1,7 +1,8 @@
 import Navbar from '../../components/Navbar.js';
 import Footer from '../../components/Footer.js';
 import Alert from '../../components/Alert.js';
-import request from '../../hooks/request.js';
+import request from '../../utility/request.js';
+import btnDeleteEvent from '../../utility/btnDeleteEvent.js';
 
 const header = document.querySelector("body > header:first-child");
 header.innerHTML = Navbar();
@@ -31,7 +32,13 @@ const handelUpdateDriver = (driver) => {
 }
 
 const handelDeleteDriver = (driver) => {
-    document.body.innerHTML += Alert(true, "تم حذف السائق");
+    document.body.appendChild(Alert(true, "تم حذف السائق"));
+
+    const btnClose = document.querySelector('.alert .btn-container:first-of-type .btn');
+
+    btnClose.onclick = () => {
+        document.querySelector('.alert').remove();
+    }
 
     const btnContinue = document.querySelectorAll('.alert .btn')[document.querySelectorAll('.alert .btn').length - 1];
 
@@ -114,6 +121,7 @@ function renderDriver (tbody, driver) {
 
     const rowForm = document.createElement('tr');
     const columnForm = document.createElement('td');
+    columnForm.colSpan = "4";
 
     columnForm.innerHTML = renderUpdateForm(driver);
     columnForm.className = `update-td form update-${driver.id}`;
@@ -135,7 +143,7 @@ function btnEvents (btnUpdate, btnDelete, columnFormormUpdate, driver) {
 
         const formUpdate = document.querySelector(`.update-${driver.id} form`);
 
-        columnFormormUpdate.style.display = 'block';
+        columnFormormUpdate.style.display = 'table-cell';
 
         formUpdate.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -144,21 +152,9 @@ function btnEvents (btnUpdate, btnDelete, columnFormormUpdate, driver) {
         });
     });
 
-    btnDelete.addEventListener('click', () => {
-        document.body.innerHTML += Alert(false, "هل انت متأكد من حذف السائق");
+    const deleteAPI = `http://localhost:2000/Box/server/APIs/drivers/delete.php?id=${driver.id}`;
 
-        const btnClose = document.querySelector('.alert .btn-container:first-of-type .btn');
-
-        btnClose.onclick = () => {
-            btnClose.parentElement.parentElement.parentElement.remove();
-        }
-
-        const btnContinue = document.querySelector('.alert .btn-container:last-of-type .btn');
-
-        btnContinue.onclick = () => {
-            request("DELETE", `http://localhost:2000/Box/server/APIs/drivers/delete.php?id=${driver.id}`, handelDeleteDriver);
-        }
-    })
+    btnDeleteEvent(btnDelete, "هل انت متأكد من حذف السائق", deleteAPI, handelDeleteDriver);
 }
 
 function renderUpdateForm (driver) {

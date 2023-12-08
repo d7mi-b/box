@@ -1,7 +1,7 @@
 <?php 
     require_once('../../core/db.php');
 
-    $query = $_SERVER["QUERY_STRING"] ?? null;
+    $id = $_GET['id'];
 
     $mysql = db_connect($host, $username, $password, $database);
 
@@ -21,10 +21,14 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] === 'DELETE') {
-        $id = explode("=", $query)[1];
-        if (deleteShipment($id)) { 
-            http_response_code(203);
-            echo json_encode(array("message"=> 'تم حذف الشحنة'));
+        try {
+            if (deleteShipment($id))
+                http_response_code(204);
+            else 
+                throw new Exception("حدث خطأ");
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo $e->getMessage();
         }
     }
 ?>

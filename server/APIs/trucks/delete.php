@@ -5,6 +5,8 @@
 
     $mysql = db_connect($host, $username, $password, $database);
 
+    $id = $_GET['id'];
+
     function deleteShipment ($id) {
         global $mysql;
 
@@ -16,7 +18,6 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] === 'DELETE') {
-        $id = explode("=", $query)[1];
         try {
             if (deleteShipment($id))
                 http_response_code(204);

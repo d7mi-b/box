@@ -1,7 +1,8 @@
 import Navbar from '../../components/Navbar.js';
 import Footer from '../../components/Footer.js';
 import Alert from '../../components/Alert.js';
-import request from '../../hooks/request.js';
+import request from '../../utility/request.js';
+import btnDeleteEvent from '../../utility/btnDeleteEvent.js';
 
 const header = document.querySelector("body > header:first-child");
 header.innerHTML = Navbar();
@@ -24,7 +25,7 @@ getTrucks();
 
 const sectionFrom = document.querySelector('.form');
 const formAdd = document.forms[0];
-const btnAdd = document.querySelector('.shipment > header .btn');
+const btnAdd = document.querySelector('.page > header .btn');
 const btnClose = document.querySelector('.form > header .btn');
 
 btnAdd.addEventListener('click', () => {
@@ -56,7 +57,7 @@ const handelUpdateTruck = (truck) => {
 }
 
 const handelDeleteTruck = (truck) => {
-    document.body.innerHTML += Alert(true, "تم حذف السائق");
+    document.body.appendChild(Alert(true, "تم حذف الشاحنة"));
 
     const btnClose = document.querySelector('.alert .btn-container:first-of-type .btn');
 
@@ -153,21 +154,9 @@ function btnEvents(btnUpdate, btnDelete, columnFormormUpdate, truck) {
         });
     });
 
-    btnDelete.addEventListener('click', () => {
-        document.body.innerHTML += Alert(false, "هل انت متأكد من حذف السائق");
+    const deleteAPI = `http://localhost:2000/Box/server/APIs/trucks/delete.php?id=${truck.id}`;
 
-        const btnClose = document.querySelector('.alert .btn-container:first-of-type .btn');
-
-        btnClose.onclick = () => {
-            btnClose.parentElement.parentElement.parentElement.remove();
-        }
-
-        const btnContinue = document.querySelector('.alert .btn-container:last-of-type .btn');
-
-        btnContinue.onclick = () => {
-            request("DELETE", `http://localhost:2000/Box/server/APIs/trucks/delete.php?id=${truck.id}`, handelDeleteTruck);
-        }
-    })
+    btnDeleteEvent(btnDelete, "هل انت متأكد من حذف السائق", deleteAPI, handelDeleteTruck);
 }
 
 function renderUpdateForm(truck) {

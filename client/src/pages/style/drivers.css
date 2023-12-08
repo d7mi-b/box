@@ -29,3 +29,39 @@
     margin: 0;
     padding: 1rem 2rem;
 }
+
+.content table .update-td header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content table .update-td header .btn {
+    background-color: var(--main-color);
+    border: .1rem solid var(--header-color);
+    text-align: center;
+}
+
+.content table .update-td header .btn:hover {
+    background-color: var(--header-color);
+}
+
+.content table .update-td header .btn i {
+    margin: 0;
+    padding: 0
+}
+
+.content table .update-td header .btn:hover i {
+    color: var(--main-color);
+}
+
+@media (max-width: 768px) {
+    table thead {
+        display: none;
+    }
+
+    table tbody tr {
+        display: flex;
+        flex-direction: column;
+        border: .1rem solid var(--header-color);
+    }
+}

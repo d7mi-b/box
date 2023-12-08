@@ -1,5 +1,3 @@
-import Alert from '../components/Alert.js';
-
 function request(method, url, callbackSucsess, callbackFaild = null, body = null) {
     const status = {
         "GET": 200,
@@ -18,7 +16,7 @@ function request(method, url, callbackSucsess, callbackFaild = null, body = null
             callbackSucsess(result);
         } else {
             if (callbackFaild)
-                callbackFaild();
+                callbackFaild(result);
         }
     };
 

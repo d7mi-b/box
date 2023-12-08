@@ -1,6 +1,7 @@
 import Navbar from '../../components/Navbar.js';
 import Footer from '../../components/Footer.js';
 import Alert from '../../components/Alert.js';
+import request from '../../utility/request.js';
 
 const header = document.querySelector("body > header:first-child");
 header.innerHTML = Navbar();
@@ -52,65 +53,73 @@ btnPrev.addEventListener('click', () => {
 })
 // END NEXT AND PREV BUTTONS SETTING #######-----------------------------------------------------------
 
-// START GET CITIES AND CATEGORIES #######--------------------------------------------------------------
-getCities();
-getCategories();
+// ###### START HANDEL REQUEST FUNCTIONS ----------------------------------------------------------------------
+const handelGetCities = (cities) => {
+    const selectsCity = document.querySelectorAll('select.city');
 
-function getCities () {
-    const http = new XMLHttpRequest();
+    selectsCity.forEach(select => {
+        cities.forEach(e => {
+            const option = document.createElement('option');
+            option.value = e.id;
+            option.innerText = e.city;
 
-    http.onload = () => {
-        if (http.status === 200) {
-            const result = JSON.parse(http.responseText);
+            option.onclick = () => {
+                select.value = option.value;
+            }
+            select.appendChild(option);
+        })
+    })
+}
 
-            const selectsCity = document.querySelectorAll('select.city');
+const handelGetCategories = (categories) => {
+    const select = document.querySelector('select[name = "category_id"]');
 
-            selectsCity.forEach(select => {
-                result.forEach(e => {
-                    const option = document.createElement('option');
-                    option.value = e.id;
-                    option.innerText = e.city;
+    categories.forEach(e => {
+        const option = document.createElement('option');
+        option.value = e.id;
+        option.innerText = e.category;
 
-                    option.onclick = () => {
-                        select.value = option.value;
-                    }
-                    select.appendChild(option);
-                })
-            })
+        option.onclick = () => {
+            select.value = option.value;
         }
-    }
+        select.appendChild(option);
+    })
+}
 
-    http.open("GET", "http://localhost:2000/Box/server/APIs/cities/cities.php");
-    http.setRequestHeader("Content_Type", "application/json");
-    http.send();
+const handelPostShipment = (shipment) => {
+    document.body.appendChild(Alert(true, "تم إضافة طلبك", shipment.id));
+
+    const btnContaniue = document.querySelector('.alert button');
+
+    btnContaniue.addEventListener('click', () => {
+        location.assign(`http://localhost:2000/Box/client/src/pages/shipment.html?id=${shipment.id}`);
+    });
+}
+
+const handelPostShipmentError = (result) => {
+    document.body.appendChild(Alert(false, result.message));
+    
+    const btnContaniue = document.querySelector('.alert button');
+
+    btnContaniue.addEventListener('click', () => {
+        document.getElementsByClassName('alert')[0].remove();
+    });
+}
+// ###### END HANDEL REQUEST FUNCTIONS ----------------------------------------------------------------------
+
+// START GET CITIES AND CATEGORIES #######--------------------------------------------------------------
+function getCities () {
+    const getAPI = "http://localhost:2000/Box/server/APIs/cities/cities.php";
+    request("GET", getAPI, handelGetCities)
 }
 
 function getCategories () {
-    const http = new XMLHttpRequest();
-
-    http.onload = () => {
-        if (http.status === 200) {
-            const result = JSON.parse(http.responseText);
-
-            const select = document.querySelector('select[name = "category_id"]');
-
-            result.forEach(e => {
-                const option = document.createElement('option');
-                option.value = e.id;
-                option.innerText = e.category;
-
-                option.onclick = () => {
-                    select.value = option.value;
-                }
-                select.appendChild(option);
-            })
-        }
-    }
-
-    http.open("GET", "http://localhost:2000/Box/server/APIs/categories/categories.php");
-    http.setRequestHeader("Content_Type", "application/json");
-    http.send();
+    const getAPI = "http://localhost:2000/Box/server/APIs/categories/categories.php";
+    request("GET", getAPI, handelGetCategories)
 }
+
+getCities();
+getCategories();
 // END GET CITIES AND CATEGORIES #######--------------------------------------------------------------
 
 // START POST SHIPMENT #######-----------------------------------------------------------
@@ -119,32 +128,8 @@ const requestForm = document.forms[0];
 requestForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    const http = new XMLHttpRequest();
-
-    http.onload = () => {
-        if (http.status === 201) {
-            const {id} = JSON.parse(http.responseText);
-
-            document.body.innerHTML += Alert(true, "تم إضافة طلبك", id);
-            const btnContaniue = document.querySelector('.alert button');
-
-            btnContaniue.addEventListener('click', () => {
-                location.assign(`http://localhost:2000/Box/client/src/pages/shipment.html?id=${id}`);
-            });
-        } else {
-            const { message } = JSON.parse(http.responseText);
-
-            document.body.innerHTML += Alert(false, message);
-            const btnContaniue = document.querySelector('.alert button');
-
-            btnContaniue.addEventListener('click', () => {
-                document.getElementsByClassName('alert')[0].remove();
-            });
-        }
-    };
-
-    http.open("POST", "http://localhost:2000/Box/server/APIs/shipments/add.php");
-    http.send(new FormData(requestForm));
+    const postAPI = "http://localhost:2000/Box/server/APIs/shipments/add.php";
+    request("POST", postAPI, handelPostShipment, handelPostShipmentError, new FormData(requestForm))
 });
 // END POST SHIPMENT #######-----------------------------------------------------------
 

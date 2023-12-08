@@ -4,8 +4,8 @@
 }
 
 :root {
-    --main-color: #181818;
-    --second-color: #eee;
+    --main-color: #eee;
+    --second-color: #181818;
     --hover-color: #939393;
     --header-color: #ffb600;
 }
@@ -26,7 +26,7 @@ html {
 
 body {
     background-color: var(--main-color);
-    background-image: linear-gradient(45deg, #111, var(--main-color));
+    /* background-image: linear-gradient(45deg, #111, var(--main-color)); */
     color: var(--second-color);
 }
 
@@ -57,12 +57,17 @@ table {
     width: 90%;
     margin: 2rem auto;
     border: .1rem solid var(--header-color);
+    border-spacing: 0;
 }
 
 
 thead {
     background-color: var(--header-color);
     color: var(--main-color);
+}
+
+thead th {
+    border: .1rem solid var(--main-color);
 }
 
 th,
@@ -95,6 +100,7 @@ select {
     color: var(--second-color);
     border: none;
     font-size: 1rem;
+    border: .1rem solid var(--hover-color);
 }
 
 input:focus-visible,
@@ -125,6 +131,7 @@ header i {
 .page > header {
     display: flex;
     justify-content: space-between;
+    padding: 0 2.5%;
 }
 
 .page > header .btn-container .btn {
