@@ -16,6 +16,10 @@
     text-align: right;
 }
 
+.form label i {
+    margin-left: .5rem;
+}
+
 .form input,
 .form select {
     border: .1rem solid var(--hover-color);
@@ -62,6 +66,12 @@
     table tbody tr {
         display: flex;
         flex-direction: column;
-        border: .1rem solid var(--header-color);
+        border-bottom: .1rem solid var(--header-color);
+    }
+
+    table tbody tr td {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }

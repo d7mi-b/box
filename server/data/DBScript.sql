@@ -10,6 +10,10 @@ create table categories (
 create table cities (
 	id varchar(200) primary key default(uuid()),
     city varchar(200) not null
+    latitude varchar(200),
+    longitude varchar(200),
+    status boolean,
+    unique(latitude, longitude)
 );
 
 create table driver (

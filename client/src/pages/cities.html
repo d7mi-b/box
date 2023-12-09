@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+
+    <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
+    <link rel="stylesheet" href="../components/style/navbar.css">
+    <link rel="stylesheet" href="../components/style/footer.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./style/drivers.css">
+    <link rel="stylesheet" href="./style/cities.css">
+
+    <title>بوكس | المدن</title>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="page">
+        <header>
+            <h1><i class="fa-solid fa-city"></i> المدن</h1>
+
+            <section class="btn-container">
+                <button class="btn center" title="إضافة شاحنة"><i class="fa-solid fa-add"></i></button>
+            </section>
+        </header>
+
+        <section class="form">
+            <header>
+                <h2><i class="fa-solid fa-city"></i> إضافة مدينة</h2>
+
+                <section class="btn-container">
+                    <button class="btn center"><i class="fa-solid fa-close"></i></button>
+                </section>
+            </header>
+
+            <form>
+                <div>
+                    <label for="city"><i class="fa-solid fa-city"></i>إسم المدينة</label>
+                    <input type="text" name="city">
+                </div>
+                <div>
+                    <label for="latitude"><i class="fa-solid fa-location"></i>خط العرض</label>
+                    <input type="text" name="latitude">
+                </div>
+                <div>
+                    <label for="longitude"><i class="fa-solid fa-location"></i>خط الطول</label>
+                    <input type="text" name="longitude">
+                </div>
+                <div class="btn-container center">
+                    <input class="btn" type="submit" name="submit" value="إضافة">
+                </div>
+            </form>
+        </section>
+
+        <section class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">تفاصيل المدينة</th>
+                    </tr>
+                    <tr>
+                        <th>إسم المدينة</th>
+                        <th>خط العرض</th>
+                        <th>خط الطول</th>
+                        <th>الموقع</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="./js/cities.js" type="module"></script>
+</body>
+
+</html>

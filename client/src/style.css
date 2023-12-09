@@ -72,7 +72,7 @@ thead th {
 
 th,
 td {
-    padding: .8rem 2rem;
+    padding: .5rem 1rem;
 }
 
 tbody th,
@@ -84,12 +84,19 @@ td {
 table tbody .btn-container {
     flex-direction: row;
     gap: 1rem;
-    height: max-content;
+    align-items: center;
 }
 
 table tbody .btn-container .btn {
     min-width: 2rem;
     min-height: 2rem;
+}
+
+table tbody td div iframe {
+    display: block;
+    width: 100%;
+    height: 10vh;
+    border: .1rem solid var(--hover-color);
 }
 
 input,

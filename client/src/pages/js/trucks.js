@@ -125,6 +125,7 @@ function appendTruck(tbody, truck) {
 
     const rowForm = document.createElement('tr');
     const columnForm = document.createElement('td');
+    columnForm.colSpan = "5";
 
     columnForm.innerHTML = renderUpdateForm(truck);
     columnForm.className = `update-td form update-${truck.id}`;
@@ -145,7 +146,7 @@ function btnEvents(btnUpdate, btnDelete, columnFormormUpdate, truck) {
 
         const formUpdate = document.querySelector(`.update-${truck.id} form`);
 
-        columnFormormUpdate.style.display = 'block';
+        columnFormormUpdate.style.display = 'table-cell';
 
         formUpdate.addEventListener('submit', (e) => {
             e.preventDefault();
