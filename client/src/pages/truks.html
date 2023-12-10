@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="ar">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+        <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
 
-    <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../components/style/navbar.css">
-    <link rel="stylesheet" href="../components/style/footer.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="./style/drivers.css">
+        <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
+        <link rel="stylesheet" href="../components/style/navbar.css">
+        <link rel="stylesheet" href="../components/style/footer.css">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="./style/drivers.css">
 
-    <title>بوكس | الشاحنات</title>
-</head>
+        <title>بوكس | الشاحنات</title>
+    </head>
 
-<body>
-    <header></header>
+    <body>
+        <header></header>
 
-    <main class="page">
-        <header>
-            <h1><i class="fa-solid fa-truck"></i> الشاحنات</h1>
-
-            <section class="btn-container">
-                <button class="btn center" title="إضافة شاحنة"><i class="fa-solid fa-add"></i></button>
-            </section>
-        </header>
-
-        <section class="form">
+        <main class="page">
             <header>
-                <h2><i class="fa-solid fa-truck"></i> إضافة شاحنة</h2>
+                <h1><i class="fa-solid fa-truck"></i> الشاحنات</h1>
 
                 <section class="btn-container">
-                    <button class="btn center"><i class="fa-solid fa-close"></i></button>
+                    <button class="btn center" title="إضافة شاحنة"><i class="fa-solid fa-add"></i></button>
                 </section>
             </header>
 
-            <form>
-                <div>
-                    <label for="number"><i class="fa-solid fa-truck"></i> رقم الشاحنة</label>
-                    <input type="text" name="number">
-                </div>
-                <div>
-                    <label for="capacity"><i class="fa-solid fa-truck"></i> سعة الشاحنة</label>
-                    <input type="text" name="capacity">
-                </div>
-                <div class="btn-container center">
-                    <input class="btn" type="submit" name="submit" value="إضافة">
-                </div>
-            </form>
-        </section>
+            <section class="form">
+                <header>
+                    <h2><i class="fa-solid fa-truck"></i> إضافة شاحنة</h2>
 
-        <section class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="5">تفاصيل الشاحنة</th>
-                    </tr>
-                    <tr>
-                        <th>رقم الشاحنة</th>
-                        <th>سعة الشاحنة</th>
-                        <th>حالة الشاحنة</th>
-                        <th>السائق</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </section>
-    </main>
+                    <section class="btn-container">
+                        <button class="btn center"><i class="fa-solid fa-close"></i></button>
+                    </section>
+                </header>
 
-    <script src="./js/trucks.js" type="module"></script>
-</body>
+                <form>
+                    <div>
+                        <label for="number"><i class="fa-solid fa-truck"></i> رقم الشاحنة</label>
+                        <input type="text" name="number">
+                    </div>
+                    <div>
+                        <label for="capacity"><i class="fa-solid fa-truck"></i> سعة الشاحنة</label>
+                        <input type="text" name="capacity">
+                    </div>
+                    <div class="btn-container center">
+                        <input class="btn" type="submit" name="submit" value="إضافة">
+                    </div>
+                </form>
+            </section>
+
+            <section class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="5">تفاصيل الشاحنة</th>
+                        </tr>
+                        <tr>
+                            <th>رقم الشاحنة</th>
+                            <th>سعة الشاحنة</th>
+                            <th>حالة الشاحنة</th>
+                            <th>السائق</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </main>
+
+        <script src="./js/trucks.js" type="module"></script>
+    </body>
 
 </html>

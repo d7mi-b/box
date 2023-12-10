@@ -1,6 +1,12 @@
 <?php 
     require_once('../../core/db.php');
 
+    session_start();
+    session_regenerate_id();
+    if(!isset($_SESSION['email'])) {    // if there is no valid session
+        throw new Exception("ليس لديك صلاحية الوصول, يتطلب تسجيل الدخول");
+    }
+
     $id = $_POST["id"] ?? null;
     $city = $_POST["city"] ?? null;
     $latitude = $_POST["latitude"] ?? null;

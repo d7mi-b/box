@@ -1,0 +1,52 @@
+body {
+    background-image: url("/Box/client/public/images/about\ bg.svg");
+    background-position: bottom;
+    background-size: cover;
+}
+
+.page {
+    align-items: center;
+}
+
+.page > header {
+    flex-direction: column;
+    padding: 0;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.page > header h1 {
+    font-size: 1rem;
+}
+
+.page > header i {
+    font-size: 2.7rem;
+}
+
+.page i,
+.page header i {
+    margin-left: .5rem;
+}
+
+.page .form {
+    width: 30rem;
+    border: .1rem solid var(--hover-color);
+    padding: 2rem;
+    background-color: var(--main-color);
+}
+
+.page .form label {
+    display: block;
+    margin-top: 1rem;
+}
+
+.page .form input:not(input[name="login"]) {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .page .form {
+        width: 90%;
+    }
+}
