@@ -4,10 +4,14 @@ import Alert from '../../components/Alert.js';
 import request from '../../utility/request.js';
 import btnDeleteEvent from '../../utility/btnDeleteEvent.js';
 
+const SERVER = `http://localhost:2000/Box/server/APIs`;
+
 const header = document.querySelector("body > header:first-child");
 header.innerHTML = Navbar();
 
 document.body.innerHTML += Footer();
+
+let drivers;
 
 const renderTrauck = (trucks) => {
     const tableBody = document.querySelector("table tbody");
@@ -18,7 +22,7 @@ const renderTrauck = (trucks) => {
 }
 
 function getTrucks() {
-    request("GET", `http://localhost:2000/Box/server/APIs/trucks/trucks.php`, renderTrauck);
+    request("GET", `${SERVER}/trucks/trucks.php`, renderTrauck);
 }
 
 getTrucks();
@@ -36,6 +40,11 @@ btnClose.addEventListener('click', () => {
     sectionFrom.style.display = 'none';
 });
 
+// ######## START HANDEL REQUEST FUNCTIONS ----------------------------------------------------------------------------
+const handelGetDrivers = (result) => {
+    drivers = result;
+}
+
 const handelAddTruck = (truck) => {
     console.log(truck);
     const tbody = document.querySelector('table tbody');
@@ -44,7 +53,7 @@ const handelAddTruck = (truck) => {
 
     sectionFrom.style.display = 'none';
 
-    document.body.innerHTML += Alert(true, "تم إضافة الشاحنة");
+    document.body.appendChild(Alert(true, "تم إضافة الشاحنة"));
     const btnContaniue = document.querySelector('.alert .btn-container:last-of-type button');
 
     btnContaniue.addEventListener('click', () => {
@@ -53,7 +62,28 @@ const handelAddTruck = (truck) => {
 }
 
 const handelUpdateTruck = (truck) => {
-    console.log(truck);
+    const num = document.querySelector(`.truck-${truck.id} > td:first-child`);
+    num.innerText = truck.number;
+
+    const capacity = document.querySelector(`.truck-${truck.id} td:nth-of-type(2)`);
+    capacity.innerText = truck.capacity;
+
+    const status = document.querySelector(`.truck-${truck.id} td:nth-of-type(3)`);
+    status.innerText = truck.status;
+
+    const name = document.querySelector(`.truck-${truck.id} td:nth-of-type(4)`);
+    name.innerText = truck.name;
+
+    const formUpdate = document.querySelector(`.truck-${truck.id} + tr > td`);
+    formUpdate.style.display = "none";
+
+    document.body.appendChild(Alert(true, "تم تحديث معلومات الشاحنة"));
+    
+    const btnContaniue = document.querySelector('.alert .btn-container:last-of-type button');
+
+    btnContaniue.addEventListener('click', () => {
+        document.querySelector('.alert').remove();
+    });
 }
 
 const handelDeleteTruck = (truck) => {
@@ -78,11 +108,18 @@ const handelDeleteTruck = (truck) => {
         })
     }
 }
+// ######## START HANDEL REQUEST FUNCTIONS ----------------------------------------------------------------------------
+
+const getDrivers = () => {
+    request("GET", `${SERVER}/drivers/drivers.php`, handelGetDrivers);
+}
+
+getDrivers();
 
 formAdd.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    request("POST", "http://localhost:2000/Box/server/APIs/trucks/add.php", handelAddTruck, null, new FormData(formAdd));
+    request("POST", "${SERVER}/trucks/add.php", handelAddTruck, null, new FormData(formAdd));
 })
 
 function appendTruck(tbody, truck) {
@@ -151,19 +188,19 @@ function btnEvents(btnUpdate, btnDelete, columnFormormUpdate, truck) {
         formUpdate.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            request("POST", "http://localhost:2000/Box/server/APIs/trucks/update.php", handelUpdateTruck, null, new FormData(formUpdate));
+            request("POST", `${SERVER}/trucks/update.php`, handelUpdateTruck, null, new FormData(formUpdate));
         });
     });
 
-    const deleteAPI = `http://localhost:2000/Box/server/APIs/trucks/delete.php?id=${truck.id}`;
+    const deleteAPI = `${SERVER}/trucks/delete.php?id=${truck.id}`;
 
-    btnDeleteEvent(btnDelete, "هل انت متأكد من حذف السائق", deleteAPI, handelDeleteTruck);
+    btnDeleteEvent(btnDelete, "هل انت متأكد من حذف الشاحنة", deleteAPI, handelDeleteTruck);
 }
 
 function renderUpdateForm(truck) {
     return `
         <header>
-            <h2><i class="fa-solid fa-truck"></i> تعديل بيانات ${truck.number}</h2>
+            <h2><i class="fa-solid fa-truck"></i> تعديل بيانات الشاحنة رقم ${truck.number}</h2>
     
             <section class="btn-container">
                 <button class="btn center"><i class="fa-solid fa-close"></i></button>
@@ -182,11 +219,24 @@ function renderUpdateForm(truck) {
             </div>
             <div>
                 <label for="status"><i class="fa-solid fa-truck"></i> حالة الشاحنة</label>
-                <select name="status" value="${truck.status}">
-                    <option value="متوقفة عن العمل"> متوقفة عن العمل</option>
-                    <option value="في انتظار شحنة"> في انتظار شحنة</option> 
-                    <option value="في طريقها لتوصيل شحنة"> في طريقها لتوصيل شحنة</option> 
-                    <option value="متفرغة"> متفرغة</option> 
+                <select name="status">
+                    <option ${truck.status === "متوقفة عن العمل" ? "selected" : ''} value="متوقفة عن العمل"> متوقفة عن العمل</option>
+                    <option ${truck.status === "في انتظار شحنة" ? "selected" : ''} value="في انتظار شحنة"> في انتظار شحنة</option> 
+                    <option ${truck.status === "في طريقها لتوصيل شحنة" ? "selected" : ''} value="في طريقها لتوصيل شحنة"> في طريقها لتوصيل شحنة</option> 
+                    <option ${truck.status === "متفرغة" ? "selected" : ''} value="متفرغة"> متفرغة</option> 
+                </select>
+            </div>
+            <div>
+                <label for="status"><i class="fa-solid fa-user"></i> سائق الشاحنة</label>
+                <select name="drivers">
+                    <option value=${null}>لا يوجد سائق</option>
+                    ${
+                        drivers && drivers.map(driver => {
+                            return `
+                                <option ${truck.driver_id === driver.id ? "selected" : ""} value="${driver.id}">${driver.name}</option>
+                            `;
+                        })
+                    }
                 </select>
             </div>
             <div class="btn-container center">

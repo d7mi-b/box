@@ -99,7 +99,7 @@
         $set = "";
 
         foreach ($data as $column => $value) {
-            $set .= "$column = '$value', ";
+            $set .= "$column = " . ($value !== 'null' ? "'$value'" : "null") . ", ";
         }
 
         $set = rtrim($set, ", ");
