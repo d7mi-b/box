@@ -28,7 +28,25 @@ const handelAddDriver = (driver) => {
 }
 
 const handelUpdateDriver = (driver) => {
-    console.log(driver);
+    const name = document.querySelector(`.driver-${driver.id} > td:first-child`);
+    name.innerText = driver.name;
+
+    const email = document.querySelector(`.driver-${driver.id} td:nth-of-type(2)`);
+    email.innerText = driver.email;
+
+    const phone = document.querySelector(`.driver-${driver.id} td:nth-of-type(3)`);
+    phone.innerText = driver.phone;
+
+    const formUpdate = document.querySelector(`.driver-${driver.id} + tr > td`);
+    formUpdate.style.display = "none";
+
+    document.body.appendChild(Alert(true, `تم تحديث معلومات ${driver.name}`));
+    
+    const btnContaniue = document.querySelector('.alert .btn-container:last-of-type button');
+
+    btnContaniue.addEventListener('click', () => {
+        document.querySelector('.alert').remove();
+    });
 }
 
 const handelDeleteDriver = (driver) => {

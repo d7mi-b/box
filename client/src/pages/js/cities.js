@@ -52,7 +52,37 @@ const handelAddCity = (city) => {
 }
 
 const handelUpdateCity = (city) => {
-    console.log(city);
+    const name = document.querySelector(`.city-${city.id} > td:first-child`);
+    name.innerText = city.city;
+
+    const latitude = document.querySelector(`.city-${city.id} td:nth-of-type(2)`);
+    latitude.innerText = city.latitude;
+
+    const longitude = document.querySelector(`.city-${city.id} td:nth-of-type(3)`);
+    longitude.innerText = city.longitude;
+
+    const location = document.querySelector(`.city-${city.id} td:nth-of-type(4)`);
+    location.innerHTML = `
+        <div>
+            <!-- Google Map Copied Code -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3861.9914780310255!2d${city.longitude}!3d${city.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTTCsDMyJzMyLjkiTiA0OcKwMDcnMjcuMyJF!5e0!3m2!1sar!2s!4v1701161169329!5m2!1sar!2s"
+                width="200" height="100" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    `;
+
+    const formUpdate = document.querySelector(`.city-${city.id} + tr > td`);
+    formUpdate.style.display = "none";
+
+    document.body.appendChild(Alert(true, `تم تحديث معلومات ${city.city}`));
+    
+    const btnContaniue = document.querySelector('.alert .btn-container:last-of-type button');
+
+    btnContaniue.addEventListener('click', () => {
+        document.querySelector('.alert').remove();
+    });
 }
 
 const handelDeleteCity = (city) => {

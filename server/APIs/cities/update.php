@@ -25,8 +25,18 @@
         
         try {
             $result = db_update($mysql, "cities", $data, $where);
-            http_response_code(203);
-            echo json_encode($result);
+            if ($result) {
+                $city = db_execute_query($mysql, "
+                    select * from cities where id = '$id';
+                ");
+                foreach ($city as $row) {
+                    http_response_code(201);
+                    echo json_encode($row);
+                    break;
+                }
+            } else {
+                throw new Exception("حدث خطأ حاول مرة أخرى");
+            }
         } catch (Exception $e) { 
             http_response_code(400);
             echo json_encode(["message" => $e -> getMessage()]);
