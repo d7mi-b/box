@@ -28,6 +28,7 @@ const updateForm = document.forms[0];
 updateForm.shipment_id.value = id;
 
 // ###### START HANDEL REQUEST FUNCTIONS ---------------------------------------------------
+// ###### START HANDEL REQUEST FUNCTIONS ---------------------------------------------------
 const handelGetShipment = (shipment) => {
     shipment_id.innerText = shipment[0].id;
     from.innerHTML = `
@@ -99,7 +100,6 @@ const handelDeleteShipment = () => {
         location.replace('/Box/client/src/pages/shipments.html');
     }
 }
-// ###### END HANDEL REQUEST FUNCTIONS ---------------------------------------------------
 
 function getShipment() {
     request("GET", `http://localhost:2000/Box/server/APIs/shipments/shipment.php?id=${id}`, handelGetShipment);
