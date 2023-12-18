@@ -22,7 +22,7 @@ create table driver (
 
 create table trucks (
 	id varchar(200) primary key default(uuid()),
-    number varchar(200) not null,
+    number varchar(200) not null unique,
     capacity int not null,
     status varchar(100),
     driver_id varchar(200),
