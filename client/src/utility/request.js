@@ -9,6 +9,7 @@ function request(method, url, callbackSucsess, callbackFaild = null, body = null
     const http = new XMLHttpRequest();
 
     http.onload = () => {
+        console.log(http.responseText);
         if (http.status === status[method]) {
             const result = status[method] !== 204 ? JSON.parse(http.responseText) : {
                 id: url.split('=')[1]
@@ -21,7 +22,7 @@ function request(method, url, callbackSucsess, callbackFaild = null, body = null
     };
 
     http.open(method, url);
-
+    http.setRequestHeader('Access-Control-Allow-Origin', '*');
     http.send(body);
 }
 

@@ -117,3 +117,27 @@
         margin-bottom: 2rem;
     }
 }
+
+.btn-iPay-payment {
+    cursor: pointer;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.btn-iPay-payment img {
+    width: 2rem;
+}
+
+.btn-iPay-payment:hover {
+    border-color: var(--header-color);
+    background-color: var(--header-color);
+    color: var(--main-color);
+    opacity: .7;
+}

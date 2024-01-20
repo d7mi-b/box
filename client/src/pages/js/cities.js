@@ -18,7 +18,7 @@ const renderCities = (cities) => {
 }
 
 function getCities() {
-    request("GET", `http://localhost:2000/Box/server/APIs/cities/cities.php`, renderCities);
+    request("GET", `http://localhost:8000/Box/server/APIs/cities/cities.php`, renderCities);
 }
 
 getCities();
@@ -111,7 +111,7 @@ const handelDeleteCity = (city) => {
 formAdd.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    request("POST", "http://localhost:2000/Box/server/APIs/cities/add.php", handelAddCity, null, new FormData(formAdd));
+    request("POST", "http://localhost:8000/Box/server/APIs/cities/add.php", handelAddCity, null, new FormData(formAdd));
 })
 
 function appendCity(tbody, city) {
@@ -189,11 +189,11 @@ function btnEvents(btnUpdate, btnDelete, columnFormormUpdate, city) {
         formUpdate.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            request("POST", "http://localhost:2000/Box/server/APIs/cities/update.php", handelUpdateCity, null, new FormData(formUpdate));
+            request("POST", "http://localhost:8000/Box/server/APIs/cities/update.php", handelUpdateCity, null, new FormData(formUpdate));
         });
     });
 
-    const deleteAPI = `http://localhost:2000/Box/server/APIs/cities/delete.php?id=${city.id}`;
+    const deleteAPI = `http://localhost:8000/Box/server/APIs/cities/delete.php?id=${city.id}`;
 
     btnDeleteEvent(btnDelete, "هل انت متأكد من حذف المدينة", deleteAPI, handelDeleteCity);
 }

@@ -18,6 +18,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] === "GET") {
         try {
+            header("Access-Control-Allow-Origin: *");
             http_response_code(200);
             echo getCities($mysql);
         } catch (Exception $e) { 

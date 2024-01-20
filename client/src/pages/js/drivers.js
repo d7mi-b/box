@@ -75,7 +75,7 @@ const handelDeleteDriver = (driver) => {
 
 // ##### START GET DRIVERS -----------------------------------------------------------------------------------
 function getDrivers() {
-    request("GET", `http://localhost:2000/Box/server/APIs/drivers/drivers.php`, handelGetDriver);
+    request("GET", `http://localhost:8000/Box/server/APIs/drivers/drivers.php`, handelGetDriver);
 }
 
 getDrivers();
@@ -98,7 +98,7 @@ btnClose.addEventListener('click', () => {
 formAdd.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    request("POST", "http://localhost:2000/Box/server/APIs/drivers/add.php", handelAddDriver, null, new FormData(formAdd));
+    request("POST", "http://localhost:8000/Box/server/APIs/drivers/add.php", handelAddDriver, null, new FormData(formAdd));
 })
 // ##### END ADD DRIVERS -----------------------------------------------------------------------------------
 
@@ -166,11 +166,11 @@ function btnEvents (btnUpdate, btnDelete, columnFormormUpdate, driver) {
         formUpdate.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            request("POST", "http://localhost:2000/Box/server/APIs/drivers/update.php", handelUpdateDriver, null, new FormData(formUpdate));
+            request("POST", "http://localhost:8000/Box/server/APIs/drivers/update.php", handelUpdateDriver, null, new FormData(formUpdate));
         });
     });
 
-    const deleteAPI = `http://localhost:2000/Box/server/APIs/drivers/delete.php?id=${driver.id}`;
+    const deleteAPI = `http://localhost:8000/Box/server/APIs/drivers/delete.php?id=${driver.id}`;
 
     btnDeleteEvent(btnDelete, "هل انت متأكد من حذف السائق", deleteAPI, handelDeleteDriver);
 }

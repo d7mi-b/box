@@ -102,12 +102,12 @@ const handelDeleteShipment = () => {
 // ###### END HANDEL REQUEST FUNCTIONS ---------------------------------------------------
 
 function getShipment() {
-    request("GET", `http://localhost:2000/Box/server/APIs/shipments/shipment.php?id=${id}`, handelGetShipment);
+    request("GET", `http://localhost:8000/Box/server/APIs/shipments/shipment.php?id=${id}`, handelGetShipment);
 }
 
 function getTrucks() {
 
-    request("GET", "http://localhost:2000/Box/server/APIs/trucks/trucks.php", handelGetTrucks);
+    request("GET", "http://localhost:8000/Box/server/APIs/trucks/trucks.php", handelGetTrucks);
 };
 
 getShipment();
@@ -122,10 +122,10 @@ updateForm.addEventListener('submit', (e) => {
         console.log(http.responseText)
     }
 
-    request(http, "POST", "http://localhost:2000/Box/server/APIs/shipments/update.php", new FormData(updateForm));
+    request(http, "POST", "http://localhost:8000/Box/server/APIs/shipments/update.php", new FormData(updateForm));
 })
 
 const btnDelete = document.querySelector('.shipment header button');
-const deleteAPI = `http://localhost:2000/Box/server/APIs/shipments/delete.php?id=${id}`;
+const deleteAPI = `http://localhost:8000/Box/server/APIs/shipments/delete.php?id=${id}`;
 
 btnDeleteEvent(btnDelete, "هل انت متأكد من حذف الشحنة", deleteAPI, handelDeleteShipment)

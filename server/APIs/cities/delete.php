@@ -1,6 +1,7 @@
 <?php 
     require_once('../../core/db.php');
 
+    session_name('BOXAUTH');
     session_start();
     session_regenerate_id();
     if(!isset($_SESSION['email'])) {    // if there is no valid session

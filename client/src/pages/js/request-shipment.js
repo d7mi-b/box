@@ -87,13 +87,14 @@ const handelGetCategories = (categories) => {
 }
 
 const handelPostShipment = (shipment) => {
-    document.body.appendChild(Alert(true, "تم إضافة طلبك", shipment.id));
+    location.assign(`http://localhost:8000/Box/client/src/pages/payment-page.html?id=${shipment.id}`);
+    // document.body.appendChild(Alert(true, "تم إضافة طلبك", shipment.id));
 
-    const btnContaniue = document.querySelector('.alert button');
+    // const btnContaniue = document.querySelector('.alert button');
 
-    btnContaniue.addEventListener('click', () => {
-        location.assign(`http://localhost:2000/Box/client/src/pages/shipment.html?id=${shipment.id}`);
-    });
+    // btnContaniue.addEventListener('click', () => {
+    //     location.assign(`http://localhost:8000/Box/client/src/pages/shipment.html?id=${shipment.id}`);
+    // });
 }
 
 const handelPostShipmentError = (result) => {
@@ -109,12 +110,12 @@ const handelPostShipmentError = (result) => {
 
 // START GET CITIES AND CATEGORIES #######--------------------------------------------------------------
 function getCities () {
-    const getAPI = "http://localhost:2000/Box/server/APIs/cities/cities.php";
+    const getAPI = "http://localhost:8000/Box/server/APIs/cities/cities.php";
     request("GET", getAPI, handelGetCities)
 }
 
 function getCategories () {
-    const getAPI = "http://localhost:2000/Box/server/APIs/categories/categories.php";
+    const getAPI = "http://localhost:8000/Box/server/APIs/categories/categories.php";
     request("GET", getAPI, handelGetCategories)
 }
 
@@ -128,7 +129,7 @@ const requestForm = document.forms[0];
 requestForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    const postAPI = "http://localhost:2000/Box/server/APIs/shipments/add.php";
+    const postAPI = "http://localhost:8000/Box/server/APIs/shipments/add.php";
     request("POST", postAPI, handelPostShipment, handelPostShipmentError, new FormData(requestForm))
 });
 // END POST SHIPMENT #######-----------------------------------------------------------
@@ -152,7 +153,7 @@ function getCoordinates (city1, city2) {
         }
     }
 
-    http.open("GET", `http://localhost:2000/Box/server/APIs/cities/coordinates.php?city1=${city1}&city2=${city2}`);
+    http.open("GET", `http://localhost:8000/Box/server/APIs/cities/coordinates.php?city1=${city1}&city2=${city2}`);
     http.send();
 }
 // END GET LATITUDE AND LONGITUDE (COORDINATES) OF LOCATION ###########-----------------------------------------------------

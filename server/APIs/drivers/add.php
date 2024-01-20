@@ -2,8 +2,9 @@
     require_once('../../core/db.php');
     require_once('../bills/add.php');
 
+    session_name('BOXAUTH');
     session_start();
-    session_regenerate_id();
+    // session_regenerate_id();
     if(!isset($_SESSION['email'])) {    // if there is no valid session
         throw new Exception("ليس لديك صلاحية الوصول, يتطلب تسجيل الدخول");
     }

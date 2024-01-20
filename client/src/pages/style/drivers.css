@@ -6,6 +6,31 @@
     border: .1rem solid var(--header-color);
 }
 
+.form header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form header .btn {
+    min-width: 2.5rem;
+    font-size: 1.3rem;
+    background-color: var(--main-color);
+    border: .1rem solid var(--header-color);
+}
+
+.form header .btn i {
+    padding: 0;
+    margin: 0;
+}
+
+.form header .btn:hover {
+    background-color: var(--header-color);
+}
+
+.form header .btn:hover i {
+    color: var(--main-color);
+}
+
 .form form {
     padding: 1rem;
 }

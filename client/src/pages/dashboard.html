@@ -71,6 +71,8 @@
 
             document.body.innerHTML += Footer();
 
+            console.log(document.cookie);
+
             if (!document.cookie.split('=')[1]) {
                 location.replace('/Box/client/src/pages/login.html')
             }

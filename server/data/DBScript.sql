@@ -2,6 +2,12 @@ create database Box;
 
 use Box;
 
+create table admin (
+	id varchar(200) primary key default(uuid()),
+    email varchar(200) unique,
+    password varchar(300)
+);
+
 create table categories (
 	id varchar(200) primary key default(uuid()),
 	category varchar(200) not null

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar">
-
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+        <link
+            rel="icon"
+            type="xml/svg"
+            href="/Box/client/public/images/Box logo.ico"
+        />
 
-        <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
-        <link rel="stylesheet" href="../components/style/navbar.css">
-        <link rel="stylesheet" href="../components/style/footer.css">
-        <link rel="stylesheet" href="../style.css">
-        <link rel="stylesheet" href="./style/shipment-query.css">
+        <link rel="stylesheet" href="../packges/fontawesome/css/all.css" />
+        <link rel="stylesheet" href="../components/style/navbar.css" />
+        <link rel="stylesheet" href="../components/style/footer.css" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="./style/shipment-query.css" />
 
         <title>بوكس | الاستعلام عن شحنة</title>
     </head>
@@ -27,11 +30,24 @@
             <section class="check-trip">
                 <form>
                     <div>
-                        <label for="trip_id"><i class="fa-solid fa-dolly"></i> رقم الشحنة او رقم هاتف العميل او بريده الإلكتروني</label>
-                        <input type="text" name="shipment_id" required placeholder="862dc770-809b-11ee-a3c0-005056c00001">
+                        <label for="trip_id"
+                            ><i class="fa-solid fa-dolly"></i> رقم الشحنة او رقم
+                            هاتف العميل او بريده الإلكتروني</label
+                        >
+                        <input
+                            type="text"
+                            name="shipment_id"
+                            required
+                            placeholder="862dc770-809b-11ee-a3c0-005056c00001"
+                        />
                     </div>
                     <div class="btn-container center">
-                        <input class="btn" type="submit" name="submit" value="المتابعة">
+                        <input
+                            class="btn"
+                            type="submit"
+                            name="submit"
+                            value="المتابعة"
+                        />
                     </div>
                 </form>
             </section>
@@ -43,7 +59,7 @@
             import Navbar from '../components/Navbar.js';
             import Footer from '../components/Footer.js';
 
-            const header = document.querySelector("body > header:first-child");
+            const header = document.querySelector('body > header:first-child');
             header.innerHTML = Navbar();
 
             document.body.innerHTML += Footer();
@@ -54,9 +70,9 @@
 
             queryForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                
-                if (document.querySelector(".not-found")) {
-                    document.querySelector(".not-found").remove();
+
+                if (document.querySelector('.not-found')) {
+                    document.querySelector('.not-found').remove();
                 }
 
                 const shipment_id = queryForm.shipment_id.value;
@@ -74,42 +90,61 @@
                         } else {
                             let shipments = [];
 
-                            result.forEach(e => {
-                                const list = result.filter(sh => sh.id === e.id);
+                            result.forEach((e) => {
+                                const list = result.filter(
+                                    (sh) => sh.id === e.id
+                                );
                                 list[0].city2 = list[1].city;
                                 if (!shipments.includes(list[0])) {
-                                    shipments.push(list[0])
+                                    shipments.push(list[0]);
                                 }
-                            })
+                            });
 
-                            const shipmentsContainer = document.getElementsByClassName('shipments-container')[0];
+                            const shipmentsContainer =
+                                document.getElementsByClassName(
+                                    'shipments-container'
+                                )[0];
 
-                            shipments.forEach(shipment => {
+                            shipments.forEach((shipment) => {
                                 shipmentsContainer.innerHTML += `
-                                    <a class="shipment" href="http://localhost:2000/Box/client/src/pages/shipment.html?id=${shipment.id}">
+                                    <a class="shipment" href="http://localhost:8000/Box/client/src/pages/shipment.html?id=${
+                                        shipment.id
+                                    }">
                                         <header>
-                                            <h1>الشحنة رقم <span>${shipment.id}</span></h1>
+                                            <h1>الشحنة رقم <span>${
+                                                shipment.id
+                                            }</span></h1>
                                         </header>
 
                                         <section>
                                             <section class="row">
                                                 <p>من</p>
-                                                <p name="from" class="city">${shipment.city}</p>
+                                                <p name="from" class="city">${
+                                                    shipment.city
+                                                }</p>
                                             </section>
 
                                             <section class="row">
                                                 <p>الى</p>
-                                                <p name="to" class="city">${shipment.city2}</p>
+                                                <p name="to" class="city">${
+                                                    shipment.city2
+                                                }</p>
                                             </section>
 
                                             <section class="row">
                                                 <p>نوع البضاعة</p>
-                                                <p name="category">${shipment.category}</p>
+                                                <p name="category">${
+                                                    shipment.category
+                                                }</p>
                                             </section>
 
                                             <section class="row">
                                                 <p>تاريخ الشحن</p>
-                                                <p name="date_of_shipment">${shipment.date_of_shipment.split(' ')[0]}</p>
+                                                <p name="date_of_shipment">${
+                                                    shipment.date_of_shipment.split(
+                                                        ' '
+                                                    )[0]
+                                                }</p>
                                             </section>    
                                         </section>
                                     </a>
@@ -117,12 +152,14 @@
                             });
                         }
                     }
-                }
+                };
 
-                http.open("GET", `http://localhost:2000/Box/server/APIs/shipments/search.php?search=${shipment_id}`);
+                http.open(
+                    'GET',
+                    `http://localhost:8000/Box/server/APIs/shipments/search.php?search=${shipment_id}`
+                );
                 http.send();
-            })
+            });
         </script>
     </body>
-
 </html>

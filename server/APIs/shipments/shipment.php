@@ -10,7 +10,7 @@
             select distinct shipments.*, category, city, latitude, longitude, price, image from shipments 
             inner join categories on shipments.category_id = categories.id
             inner join cities on shipments.from_city_id = cities.id or shipments.to_city_id = cities.id
-            inner join bills on bills.shipment_id = shipments.id
+            left join bills on bills.shipment_id = shipments.id
             where (shipments.id = '$id' and shipments.status = true)
         ");
 

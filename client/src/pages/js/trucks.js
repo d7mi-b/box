@@ -4,7 +4,7 @@ import Alert from '../../components/Alert.js';
 import request from '../../utility/request.js';
 import btnDeleteEvent from '../../utility/btnDeleteEvent.js';
 
-const SERVER = `http://localhost:2000/Box/server/APIs`;
+const SERVER = `http://localhost:8000/Box/server/APIs`;
 
 const header = document.querySelector("body > header:first-child");
 header.innerHTML = Navbar();

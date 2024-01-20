@@ -20,7 +20,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         try {
-            if (!$from || !$to || !$category_id || !$quantity || !$date_of_shipment || !$owner_name || !$owner_email || !$owner_phone) { 
+            if (!$from || !$to || !$category_id || !$quantity || !$date_of_shipment || !$owner_name || !$owner_email) { 
                 http_response_code(400);
                 throw new Exception("يجب ملء جميع الحقول");
             }
@@ -48,27 +48,30 @@
             $shipment_id = '';
             
             foreach ($id as $row) {
-                http_response_code(201);
                 $shipment_id = $row["id"];
+                break;
             }
 
-            $receiptURL = myAppHandleFileUpload($receipt, $shipment_id);
+            http_response_code(201);
+            echo json_encode(array("id" => $shipment_id));
+
+            // $receiptURL = myAppHandleFileUpload($receipt, $shipment_id);
             
-            if ($receiptURL) {
-                $bill = addBill($shipment_id, $price, $receiptURL);
-                if (!$bill) {
-                    db_execute_query($mysql, "
-                        delete from shipments where id = '$shipment_id'
-                    ");
-                    throw new Exception("حدث خطأ اثناء إنشاء الفاتورة,تأكد من ان البيانات مكتملة وحاول مرة أخرى");
-                }
-                echo json_encode(array("id" => $shipment_id));
-            } else {
-                db_execute_query($mysql, "
-                    delete from shipments where id = '$shipment_id'
-                ");
-                throw new Exception("حدث خطأ اثناء رفع الصورة, حاول مرة أخرى");
-            }
+            // if ($receiptURL) {
+            //     $bill = addBill($shipment_id, $price, $receiptURL);
+            //     if (!$bill) {
+            //         db_execute_query($mysql, "
+            //             delete from shipments where id = '$shipment_id'
+            //         ");
+            //         throw new Exception("حدث خطأ اثناء إنشاء الفاتورة,تأكد من ان البيانات مكتملة وحاول مرة أخرى");
+            //     }
+            //     echo json_encode(array("id" => $shipment_id));
+            // } else {
+            //     db_execute_query($mysql, "
+            //         delete from shipments where id = '$shipment_id'
+            //     ");
+            //     throw new Exception("حدث خطأ اثناء رفع الصورة, حاول مرة أخرى");
+            // }
         } catch (Exception $e) { 
             http_response_code(400);
             echo json_encode(["message" => $e->getMessage()]);
@@ -97,4 +100,3 @@
             return false; // "File upload failed.";
         }
     }
-?>

@@ -9,6 +9,8 @@ document.body.innerHTML += Footer();
 
 const id = location.href.split("?")[1].split("=")[1];
 
+const iPayForm = document.getElementById("iPay-payment-form");
+
 const shipment_id = document.getElementsByName('id')[0];
 const category = document.getElementsByName('category')[0];
 const from = document.getElementsByName('from')[0];
@@ -29,6 +31,8 @@ const handelGetShipment = (shipment) => {
         `;
 
     } else {
+        iPayForm.orderID.value = id;
+        iPayForm.amount.value = '15000';
         renderShipment(shipment);
     }
 }
@@ -77,3 +81,31 @@ function getShipment () {
 }
 
 getShipment();
+
+iPayForm.pay.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const merchantAccountNumber = iPayForm.merchantAccountNumber.value;
+    const merchantKey = iPayForm.merchantKey.value;
+    const orderID = iPayForm.orderID.value;
+    const amount = iPayForm.amount.value;
+    const currancy = iPayForm.currancy.value
+    
+    const hash = await sha256(`${merchantAccountNumber}${merchantKey}${orderID}${amount}${currancy}`);
+    iPayForm.hash.value = hash;
+    
+    if (hash)
+        iPayForm.submit();
+})
+
+async function sha256(message) {
+    // encode as UTF-8
+    const msgBuffer = new TextEncoder().encode(message);
+    // hash the message
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    // convert ArrayBuffer to Array
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    // convert bytes to hex string
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}

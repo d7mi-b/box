@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="xml/svg" href="/Box/client/public/images/Box logo.ico">
+
+    <link rel="stylesheet" href="../packges/fontawesome/css/all.css">
+    <link rel="stylesheet" href="../components/style/navbar.css">
+    <link rel="stylesheet" href="../components/style/footer.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./style/request.shipment.css">
+
+    <title>بوكس | دفع فاتورة شحنة</title>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="page shipment-query">
+        <header>
+            <h1><i class="fa-solid fa-dolly"></i> بيانات الشحنة</h1>
+        </header>
+
+        <section class="content">
+            <table>
+                <thead>
+                    <th colspan="4">تفاصيل الشحنة</th>
+                </thead>
+                <tbody>
+                    <tr class="row">
+                        <th>رقم الشحنة</th>
+                        <td name="id"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>من</th>
+                        <td name="from" class="city"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>الى</th>
+                        <td name="to" class="city"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>نوع البضاعة</th>
+                        <td name="category"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>تاريخ الشحن</th>
+                        <td name="date_of_shipment"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>الكمية</th>
+                        <td name="quantity"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>حالة الشحنة</th>
+                        <td name="stage"></td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <th colspan="2">تفاصيل العميل</th>
+                </thead>
+                <tbody>
+                    <tr class="row">
+                        <th>الاسم</th>
+                        <td name="owner_name"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>الهاتف</th>
+                        <td name="owner_phone"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <th>البريد الإلكتروني</th>
+                        <td name="owner_email"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <form id="iPay-payment-form" method="post" action="http://localhost:5456/transactions/payment-page">
+            <input type="hidden" name="orderID" value="" required>
+            <input type="hidden" name="merchantAccountNumber" value="ipay_65a799870e6de" required>
+            <input type="hidden" name="merchantKey" value="M65a7998888ea1" required>
+            <input type="hidden" name="amount" value="" required>
+            <input type="hidden" name="currancy" value="RY" required>
+            <input type="hidden" name="targetURL" value="http://localhost:8000/Box/client/src/pages/payment-result.html" required>
+            <input type="hidden" name="hash" value="" required>
+            <button class="btn btn-iPay-payment" type="submit" name="pay">
+                <img src="../../public/images/iPay Black.png" alt="">
+                ادفع مع iPay
+            </button>
+        </form>
+    </main>
+
+    <script src="./js/payment-page.js" type="module"></script>
+</body>
+
+</html>
