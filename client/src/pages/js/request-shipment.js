@@ -8,7 +8,7 @@ header.innerHTML = Navbar();
 
 document.body.innerHTML += Footer();
 
-// START NEXT AND PREV BUTTONS SETTING #######-----------------------------------------------------------
+// START NEXT AND PREV BUTTONS SETTING #######--------------------------------------------------------
 const steps = document.querySelectorAll('.steps ol li');
 
 const stepsForms = document.querySelectorAll(".request-shipment form > section");
